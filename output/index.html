@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Render Engine - Static Sites Made with Python</title>
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+  <script src="https://kit.fontawesome.com/4ac674b58e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+          <div class="container has-text-centered">
+            <h1 class="title is-1">Render Engine</h1>
+            <h2 class="subtitle is-3">Build
+                your website with Python
+            </h2>
+          </div>
+        </div>
+        <div class="hero-foot">
+        <footer class="footer">
+        <div class="has-text-centered">
+          <h1 class="subtitle is-2 has-text-info">Start Rendering Today</h1>
+          <h1 class="subtitle is-4"><code>pip install
+              render-engine</code></h1>
+          <h2 class="subtitle is-6">or Learn More </h2><span class='icon'>
+              <h2 class="subtitle is-2 has-text-grey-light"><i
+                  class="fas fa-chevron-down"></i></span></h2>
+        </div>
+        </footer>
+      </div>
+    </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <h1 class="subtitle is-1">
+        What is a website but a collection of <span class="grey">pages</span>
+        </h1>
+        <figure class="image">
+          <img src="static/woman-in-front-of-her-computer-3059745.jpg">
+        </figure>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+          <div class="content">
+            <p>
+            Web technology has evolved since the early days of the internet. But
+            deep down at its core, every website, no matter how complex, has to
+            reply back with pure HTML. In fact, most websites we visit once
+            loaded no longer needs to pull information from a server and can
+            exist exactly how it is presented.
+            </p>
+          </div>
+          <div class="columns is-centered">
+            <div class="column is-one-third has-text-centered">
+                <h2 class="title is-3">Pages</h2>
+                <figure class="image">
+                  <img src="static/page_object.png">
+                </figure>
+            </div>
+            <div class="column is-one-third">
+                <h2 class="title is-3 has-text-centered">Collections</h2>
+                  <img src="static/collection_object.png">
+            </div>
+            <div class="column is-one-third">
+                <h2 class="title is-3 has-text-centered">Sites</h2>
+                  <img src="static/site_object.png">
+            </div>
+          </div>
+      </div>
+        <div class="container"> 
+            <h3 class="subtitle is-2"><strong>Render Engine</strong> is designed to think in terms of 
+              pages.</h3>
+        <div class="content">
+            <p>Render Engine's components build off of one another.</p>
+            <p>At the base level there is a <strong>Page</strong>, it is just that a single
+            entity of HTML and metadata goodness.</p>
+            <p>Sometimes a lot of pages will have a lot in common or belong to
+            a group. We call these <strong>Collections</strong>. Collections
+            can have any number of the same, or different attributes. Oh and
+            your collections can even have collections...🤯</p>
+            <p>All of these pages we build need a home. We call that a
+            <strong>Site</strong>. A site serves as a container for your pages
+            controlling it's structure and how pages are built.</p>
+            <p>Last but not least is the Engine. And engine is what is doing
+            the work building out your pages from the data and templates that
+            you have provided it. How do you start that engine? Simple.</p>
+
+            <h1 class="has-text-centered"><code>site.render()</code></h1>
+        </div>
+        </div>
+  
+    </section>
+    <section class="section">
+      <div class="container">
+        <h1 class="title is-2">Expaaansive</h1>
+        <div class="content">
+          <p>With Render Engine, each page you create is a python object this
+          means you can access it's metadata and use it throughout your site.</p>
+          <h2 class="subtitle is-4">This also gives you the ability to make
+            your own page objects to expand beyond the capabilities out of the
+            box.</h2>
+          <p>Render Engine support many Page and Collection types like Blogs
+          and Microblogs even supporting RSS Feeds</p>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <h1 class="title is-2">Write Fast...Serve Faster</h1>
+        <div class="content">
+          <p>
+          Render Engine is built using tools that engineered for you to write
+          fast content using the Jinja2 templating engine and the ability to
+          parse markdown.
+          </p>
+          <p>
+          Rendered sites are served in raw HTML so there are no multiple
+          requests to the server or waiting to fetch data from several
+          locations. (Unless you want it to...)
+          </p>
+      </div>
+      <div class="columns is-centered">
+      <div class="column is-4">
+      <figure class="image">
+        <img src="static/tree.png">
+      </figure>
+      </div>
+      </div>
+      </div>
+        <div class="has-text-centered">
+          <h1 class="subtitle is-2 has-text-info">Start Rendering Today</h1>
+          <h1 class="subtitle is-4"><code>pip install
+              render-engine</code></h1>
+          <h2 class="subtitle is-6">or Learn More </h2><span class='icon'>
+              <h2 class="subtitle is-2 has-text-grey-light"><i
+                  class="fas fa-chevron-down"></i></span></h2>
+        </div>
+      </div>
+    </section>
+
+  
+<footer class="footer has-bg-warning">
+  <div class="level has-text-centered">
+    <div class="level-item">
+    <p>This site is built with Render Engine by <a
+                                               href="https://kjaymiller.com">Jay Miller</a>.
+                                               Who is clearly a
+                                               <strike>Marketer</strike>
+                                               Developer.
+    </p>
+    </div>
+    <div class="level-item">
+      <p><a
+           href="https://render-engine.readthedocs.io/en/latest">Documentation</a></p>
+    </div>
+    <div class="level-item">
+      <p><a href="https://github.com/kjaymiller/render_engine">GitHub</a></p>
+    </div>
+    <div class="level-item">
+      <p><a
+        href="https://github.com/kjaymiller/render_engine/blob/master/LICENSE">
+        License</a>
+      </p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
