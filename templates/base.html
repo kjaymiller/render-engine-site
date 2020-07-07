@@ -12,30 +12,6 @@ body {font-size: 1.2em;}
 <body>
 {% block content %}
 {% endblock %}
-<footer class="footer has-bg-warning">
-  <div class="level has-text-centered">
-    <div class="level-item">
-    <p>This site is built with Render Engine by <a
-                                               href="https://kjaymiller.com">Jay Miller</a>.
-                                               Who is clearly a
-                                               <strike>Marketer</strike>
-                                               Developer.
-    </p>
-    </div>
-    <div class="level-item">
-      <p><a
-           href="https://render-engine.readthedocs.io/en/latest">Documentation</a></p>
-    </div>
-    <div class="level-item">
-      <p><a href="https://github.com/kjaymiller/render_engine">GitHub</a></p>
-    </div>
-    <div class="level-item">
-      <p><a
-        href="https://github.com/kjaymiller/render_engine/blob/master/LICENSE">
-        License</a>
-      </p>
-    </div>
-  </div>
-</footer>
+{% include 'footer.html' %}
 </body>
 </html>
