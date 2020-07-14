@@ -1,3 +1,7 @@
+<section class="section">
+  <div class="container">
+    <div class="notification is-info is-light">
+      <h2 class="is-subtitle is-2">Subscribe for Updates!</h2>
 <form
   action="https://buttondown.email/api/emails/embed-subscribe/render-engine"
   method="post"
@@ -5,11 +9,19 @@
   onsubmit="window.open('https://buttondown.email/render-engine', 'popupwindow')"
   class="embeddable-buttondown-form"
 >
-  <label for="bd-email">Enter your email</label>
-  <input type="email" name="email" id="bd-email">
+<div class="field is-grouped">
+  <div class="control is-expanded">
+    <input class="input" type="email" placeholder="email@example.com" name="email" id="bd-email">
+  </div>
+  <div class="control">
+    <input type="submit" class="button is-link" value="Subscribe"></input>
+  </div>
+</div>
   <input type="hidden" value="1" name="embed"></input>
-  <input type="submit" value="Subscribe"></input>
-  <p>
+  <h2 class="subtitle is-5">
     <a href="https://buttondown.email" target="_blank">Powered by Buttondown.</a>
-  </p>
+  </h2>
 </form>
+  </div>
+  </div>
+</section>
