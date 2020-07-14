@@ -140,6 +140,21 @@ body {font-size: 1.2em;}
       </div>
     </section>
 
+    <form
+  action="https://buttondown.email/api/emails/embed-subscribe/render-engine"
+  method="post"
+  target="popupwindow"
+  onsubmit="window.open('https://buttondown.email/render-engine', 'popupwindow')"
+  class="embeddable-buttondown-form"
+>
+  <label for="bd-email">Enter your email</label>
+  <input type="email" name="email" id="bd-email">
+  <input type="hidden" value="1" name="embed"></input>
+  <input type="submit" value="Subscribe"></input>
+  <p>
+    <a href="https://buttondown.email" target="_blank">Powered by Buttondown.</a>
+  </p>
+</form>
   
 <footer class="footer has-bg-warning">
     <p>This site is built with Render Engine by <a
