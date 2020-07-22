@@ -12,13 +12,6 @@ class Index(Page):
 class Docs(Collection):
     content_path = 'content/docs'
     routes = ['docs']
-
-    def __init__(self):
-        super().__init__()
-        self.markdown_extras.append('toc')
-        self.markdown_extras.append('header-ids')
-
-        for page in self.pages:
-            print(page.markup)
+    markdown_extras = ['header-ids', 'fenced-code-blocks']
 
 site.render() # build out the tools

@@ -1,7 +1,6 @@
 title: Collection
 
-Collection
-----
+# Collection
 
 A Collection is great when you have many pages with similar attributes or pages
 that should be grouped together.

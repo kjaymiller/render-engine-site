@@ -23,7 +23,7 @@ body {font-size: 1.2em;}
   
 <section class="section">
   <div class="container">
-    <div class="content"><h1>Page</h1>
+    <div class="content"><h1 id="page">Page</h1>
 
 <p>Everything that that is visible to the web is just a page.</p>
 
@@ -41,7 +41,7 @@ decorator or you can pass the page object into the site with <code>site.route</c
   <span class="k">pass</span>
 </code></pre></div>
 
-<h2>Using <code>@site.register_route</code> vs <code>route</code></h2>
+<h2 id="using-siteregister_route-vs-route">Using <code>@site.register_route</code> vs <code>route</code></h2>
 
 <p><code>@site.register_route</code> is an easy way to create a webpage for a given <code>Page</code>
 object.</p>
@@ -61,12 +61,12 @@ over the other except for line count.</p>
 <span class="n">site</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="n">Index</span><span class="p">())</span>
 </code></pre></div>
 
-<h2>Built-in Attributes of <code>Page</code></h2>
+<h2 id="built-in-attributes-of-page">Built-in Attributes of <code>Page</code></h2>
 
 <p>Built-in attributes are not exposed to the template and can be used to give the
 site instructions for building.</p>
 
-<h3>template</h3>
+<h3 id="template">template</h3>
 
 <p><code>template: Optional[str]=None # _inherits from Site_</code></p>
 
@@ -84,7 +84,7 @@ class Index(Page): # the overriden template `templates/index.html` will be used.
     template = 'index.html'
 </code></pre>
 
-<h3>routes</h3>
+<h3 id="routes">routes</h3>
 
 <p><code>route: Optional[Union['str']]=['']</code></p>
 
@@ -95,7 +95,7 @@ class Index(Page): # the overriden template `templates/index.html` will be used.
 
 </code></pre>
 
-<h3>slug</h3>
+<h3 id="slug">slug</h3>
 
 <p><code>slug: Optional[str]=''</code></p>
 
@@ -131,7 +131,7 @@ class somePage(Page):
 
 </code></pre>
 
-<h3>content_path</h3>
+<h3 id="content_path">content_path</h3>
 
 <p><code>content_path: Optional[str]=''</code></p>
 
@@ -144,7 +144,7 @@ class somePage(Page):
 <p>Content loaded from a <code>content_path</code> is parsed using the <code>parse_content</code>
 method given the object's [matcher].</p>
 
-<h3>list_attrs</h3>
+<h3 id="list_attrs">list_attrs</h3>
 
 <p><code>list_attrs: Optional[Union['str']]=None</code></p>
 
@@ -166,7 +166,7 @@ This is a test.
 
 </code></pre>
 
-<h3>no_index</h3>
+<h3 id="no_index">no_index</h3>
 
 <p><code>no_index: bool = False</code></p>
 
@@ -188,12 +188,12 @@ class Index(Page): # will not be indexed
 
 <p>Setting <code>no_index</code> when your site does not have search defined does nothing.</p>
 
-<h2>Not-So-Safe Attributes</h2>
+<h2 id="not-so-safe-attributes">Not-So-Safe Attributes</h2>
 
 <p>While you can modify most values with their given type there are a few object
 that should be left alone unless you are really going under the hood.</p>
 
-<h3>matcher</h3>
+<h3 id="matcher">matcher</h3>
 
 <p><code>matcher: Optional['str']=r"(^\w+: \b.+$)"</code></p>
 
@@ -215,7 +215,7 @@ that should be left alone unless you are really going under the hood.</p>
 <span class="n">Some</span> <span class="n">content</span> <span class="n">here</span><span class="o">...</span>
 </code></pre></div>
 
-<h3>engine</h3>
+<h3 id="engine">engine</h3>
 
 <p><code>engine: Optional[str]=None # _inherits from Site_</code></p>
 
