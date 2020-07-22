@@ -10,8 +10,9 @@
 body {font-size: 1.2em;}
 </style>
 <body>
-{% block content %}
-{% endblock %}
-{% include 'footer.html' %}
+  {% include 'header.html' %}
+  {% block content %}
+  {% endblock %}
+  {% include 'footer.html' %}
 </body>
 </html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Render Engine - Static Sites Made with Python</title>
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+  <script src="https://kit.fontawesome.com/4ac674b58e.js" crossorigin="anonymous"></script>
+</head>
+<style>
+body {font-size: 1.2em;}
+</style>
+<body>
+  <nav class="navbar">
+  <div class="navbar-brand"><a class="navbar-item has-text-danger" href="/">Render Engine</a></div>
+  <div class="navbar-menu">
+    <a class="navbar-item" href="docs">Docs</a>
+    <a class="navbar-item" href="contact">Contact</a>
+    <a class="navbar-item" href="github"><span class="icon"><i class="fab
+          fa-github"></i></span></a>
+  </div>
+</nav>
+  
+<section class="section">
+  <div class="container">
+    <div class="content"><h2>Collection</h2>
+
+<p>A Collection is great when you have many pages with similar attributes or pages
+that should be grouped together.</p>
+
+<p>Collection attributes will be applied to each page in the collection.</p>
+
+<h3>content_items</h3>
+
+<p><code>content_items: typing.List[Page] = []</code></p>
+
+<p>If you have a group of [Page]-like items that you would like to be bundled into a
+collection.</p>
+
+<p>This is good for building a collection of objects of a DIFFERENT [content_type].</p>
+
+<h3>content_path</h3>
+
+<p><code>content_path: str = ""</code></p>
+
+<p>Builds items of the same [content_type].</p>
+
+<p>Used for content files in a folder that you would like to have the same
+content_type, template, routes.</p>
+
+<p><code>content_path</code></p>
+
+<h3>Combining <code>content_items</code> and <code>content_path</code></h3>
+
+<p>It is possible to define both <code>content_items</code> and a <code>content_path</code> in a
+collection. This could lead to unexpected consequences when rendering your
+site. You could potentially overwrite files. Make sure all objects are
+unique.</p>
+
+<h3>content_type</h3>
+
+<p>content_type: typing.Type[Page] = Page</p>
+
+<p>Sets the <code>content_type</code> for each item in the <code>[content_path]</code>.</p>
+
+<h3>template</h3>
+
+<p>template: str = "page.html"</p>
+
+<p>Sets the template the for each item in the <code>[content_path]</code>.</p>
+
+<h3>includes</h3>
+
+<p><code>includes: typing.List[str] = [".md", "*.html"]</code></p>
+
+<p>The type of files that will be looked at in the <code>[content_path]</code>.</p>
+
+<p>Any files in [content_path] with extensions not listed in <code>includes</code> will be
+skipped.</p>
+
+<h3>routes</h3>
+
+<p><code>routes: typing.List[str] = [""]</code></p>
+
+<h3>subcollections</h3>
+
+<p><code>subcollections: typing.List[str] = []</code></p>
+
+<p>Subcollections are a filtered group of items in the collections. Subcollections 
+are created by specifying the attribute to check against.</p>
+
+<pre><code>class TestPage1(Page):
+        foo = 'bar'
+
+class TestPage2(Page):
+        foo = 'biz'
+
+
+class MyCollection(Collection):
+        subcollections = ['foo']
+
+
+# This would yield two subcollections
+bar(Collection):
+        content_items = [TestPage1]
+
+biz(Collection):
+        content_items = [TestPage2]
+
+</code></pre>
+
+<p>Subcollections have <a href="#archive">archives</a>. Each subcollection inherits from its
+parent and therefore gives you the ability to pull attributes that it's parent
+also has (by default). This is great for mirroring functionality between the
+collection and subcollection.</p>
+
+<p>Subcollections are not added to a site until the site is rendered. Note that
+due to this, You may see extended processing times based on the number of
+subcollections your site has.</p>
+
+<h2>archive</h2>
+
+<p><code>has_archive: bool = False</code></p>
+
+<p>An archive is a list of pages with references to the page items.</p>
+
+<p>If <a href="#paginated">paginated</a> is False, the list will only contain a single
+Archive [Page] object.</p>
+
+<p>If <a href="#paginated">paginated</a> is True, the list will be segmented by the
+<a href="#items_per_page">items<em>per</em>page</a> value.</p>
+
+<p>Instruct the [Site] to generate archives with the [has_archive] flag.</p>
+
+<p>You can generate archives by calling the <code>Archive</code> attribute. EVEN IF
+<code>has_archive</code> is set to <code>False</code></p>
+
+<h2>Archive Values</h2>
+
+<p>Even though Archive objects are [Page] objects, we have a few attributes in the
+Collection that will be passed into the page when <code>Collection.archive</code> is
+called.</p>
+
+<h3>archive_template</h3>
+
+<p><code>archive_template: str = "archive.html"</code></p>
+
+<p>Template that will be used with <code>[Collection.archive](#archive)</code></p>
+
+<h3>archive_sort</h3>
+
+<p><code>archive_sort: typing.Tuple[str] = ('title')</code></p>
+
+<p>The name of the attribute that will be checked against when sorting the
+collection.pages.</p>
+
+<h3>archive_reverse</h3>
+
+<p><code>archive_reverse: bool = False</code></p>
+
+<p>Sorts <code>archive.pages</code> in reverse order by the archive_sort.</p>
+
+<h1>Not So Safe Attributes</h1>
+
+<h3>engine</h3>
+
+<p><code>engine: Optional[str]=None # _inherits from Site_</code></p>
+
+<p>The engine needs to be added to the site dictionary of engines.</p>
+
+<pre><code>import Mako
+
+class mako(Engine):
+  ... # code for mako to be compatible with Render Engine
+
+site = Site()
+site.engines['Mako'] = mako
+
+class MyCollection():
+  engine = 'Mako'
+</code></pre>
+
+<p>The page's Engine of the is responsible for generating content for your
+webpage. In most cases this will be provided by the site and should not be
+changed.</p>
+</div>
+  </div>
+</section>
+
+  <footer class="footer has-bg-warning">
+    <p>This site is built with Render Engine by <a
+                                               href="https://kjaymiller.com">Jay Miller</a>.
+                                               Who is clearly a
+                                               <strike>Marketer</strike>
+                                               Developer.
+    </p>
+  <div class="level has-text-centered">
+    <div class="level-item">
+      <p><a
+           href="https://render-engine.readthedocs.io/en/latest">Documentation</a></p>
+    </div>
+    <div class="level-item">
+      <p><a href="https://github.com/kjaymiller/render_engine">GitHub</a></p>
+    </div>
+    <div class="level-item">
+      <p><a
+        href="https://github.com/kjaymiller/render_engine/blob/master/LICENSE">
+        License</a>
+      </p>
+    </div>
+    <div class="level-item">
+      <iframe src="https://github.com/sponsors/kjaymiller/button" title="Sponsor kjaymiller" height="35" width="107" style="border: 0;"></iframe>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
