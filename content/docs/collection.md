@@ -74,7 +74,7 @@ skipped.
 Subcollections are a filtered group of items in the collections. Subcollections 
 are created by specifying the attribute to check against.
 
-```
+```python
 class TestPage1(Page):
 		foo = 'bar'
 
@@ -156,7 +156,7 @@ Not So Safe Attributes
 
 The engine needs to be added to the site dictionary of engines.
 
-```
+```python
 import Mako
 
 class mako(Engine):

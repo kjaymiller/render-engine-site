@@ -89,25 +89,24 @@ skipped.</p>
 <p>Subcollections are a filtered group of items in the collections. Subcollections 
 are created by specifying the attribute to check against.</p>
 
-<pre><code>class TestPage1(Page):
-        foo = 'bar'
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">TestPage1</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+        <span class="n">foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span>
 
-class TestPage2(Page):
-        foo = 'biz'
-
-
-class MyCollection(Collection):
-        subcollections = ['foo']
+<span class="k">class</span> <span class="nc">TestPage2</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+        <span class="n">foo</span> <span class="o">=</span> <span class="s1">&#39;biz&#39;</span>
 
 
-# This would yield two subcollections
-bar(Collection):
-        content_items = [TestPage1]
+<span class="k">class</span> <span class="nc">MyCollection</span><span class="p">(</span><span class="n">Collection</span><span class="p">):</span>
+        <span class="n">subcollections</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]</span>
 
-biz(Collection):
-        content_items = [TestPage2]
 
-</code></pre>
+<span class="c1"># This would yield two subcollections</span>
+<span class="n">bar</span><span class="p">(</span><span class="n">Collection</span><span class="p">):</span>
+        <span class="n">content_items</span> <span class="o">=</span> <span class="p">[</span><span class="n">TestPage1</span><span class="p">]</span>
+
+<span class="n">biz</span><span class="p">(</span><span class="n">Collection</span><span class="p">):</span>
+        <span class="n">content_items</span> <span class="o">=</span> <span class="p">[</span><span class="n">TestPage2</span><span class="p">]</span>
+</code></pre></div>
 
 <p>Subcollections have <a href="#archive">archives</a>. Each subcollection inherits from its
 parent and therefore gives you the ability to pull attributes that it's parent
@@ -168,17 +167,17 @@ collection.pages.</p>
 
 <p>The engine needs to be added to the site dictionary of engines.</p>
 
-<pre><code>import Mako
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">Mako</span>
 
-class mako(Engine):
-  ... # code for mako to be compatible with Render Engine
+<span class="k">class</span> <span class="nc">mako</span><span class="p">(</span><span class="n">Engine</span><span class="p">):</span>
+  <span class="o">...</span> <span class="c1"># code for mako to be compatible with Render Engine</span>
 
-site = Site()
-site.engines['Mako'] = mako
+<span class="n">site</span> <span class="o">=</span> <span class="n">Site</span><span class="p">()</span>
+<span class="n">site</span><span class="o">.</span><span class="n">engines</span><span class="p">[</span><span class="s1">&#39;Mako&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mako</span>
 
-class MyCollection():
-  engine = 'Mako'
-</code></pre>
+<span class="k">class</span> <span class="nc">MyCollection</span><span class="p">():</span>
+  <span class="n">engine</span> <span class="o">=</span> <span class="s1">&#39;Mako&#39;</span>
+</code></pre></div>
 
 <p>The page's Engine of the is responsible for generating content for your
 webpage. In most cases this will be provided by the site and should not be
