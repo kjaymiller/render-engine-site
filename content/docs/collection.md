@@ -114,7 +114,7 @@ If [paginated](#paginated) is False, the list will only contain a single
 Archive [Page] object.
 
 If [paginated](#paginated) is True, the list will be segmented by the
-[items_per_page](#items_per_page) value.
+[`items_per_page`](#items-per-page) value.
 
 Instruct the [Site] to generate archives with the [has_archive] flag.
 
