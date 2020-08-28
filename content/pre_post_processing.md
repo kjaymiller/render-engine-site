@@ -1,5 +1,6 @@
 title: Executing PRE and POST Processed Code
 category: tips
+date: 28 Aug 2020 13:53
 
 Render Engine doesn't have any pre or post processing hooks to speak of because
 of it's simple design.
@@ -26,7 +27,7 @@ class Index(Page):
 @site.register_collection
 class blog(Blog):
     site.render() # build out the tools
-    template_path: 'content'
+    template_path: './content'
     routes = ['blog']
     markdown_extras = ['footnotes']
     subcollections = ['category']
