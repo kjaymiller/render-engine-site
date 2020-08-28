@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  {{ title }}
     {% if title %}
-      <title>{title} - Render Engine</title>
+    <title>{{title|capitalize}} - Render Engine</title>
     {% else %}
       <title>Render Engine - Static Sites Made with Python</title>
     {% endif %}
