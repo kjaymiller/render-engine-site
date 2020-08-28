@@ -2,7 +2,8 @@ from render_engine import Site, Page, Collection, Blog
 
 site = Site()
 site.strict = True
-site.Title = j
+site.SITE_TITLE = "Render_Engine"
+site.SITE_URL = "https://render-engine.site"
 
 @site.register_route
 class Index(Page):
