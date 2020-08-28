@@ -18,7 +18,6 @@ site.strict = True
 site.SITE_TITLE = "Render_Engine"
 site.SITE_URL = "https://render-engine.site"
 
-
 @site.register_route
 class Index(Page):
     template = "index.html" # page.html is the default template but you can make a custom template

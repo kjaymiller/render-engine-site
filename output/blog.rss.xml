@@ -22,7 +22,6 @@ your site.</p>
 <span class="n">site</span><span class="o">.</span><span class="n">SITE_TITLE</span> <span class="o">=</span> <span class="s2">&quot;Render_Engine&quot;</span>
 <span class="n">site</span><span class="o">.</span><span class="n">SITE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://render-engine.site&quot;</span>
 
-
 <span class="nd">@site</span><span class="o">.</span><span class="n">register_route</span>
 <span class="k">class</span> <span class="nc">Index</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
     <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;index.html&quot;</span> <span class="c1"># page.html is the default template but you can make a custom template</span>
