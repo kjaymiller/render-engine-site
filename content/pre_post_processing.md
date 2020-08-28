@@ -41,8 +41,8 @@ if __name__ == "__main__":
 Let's add a custom message to our logging when render-engine
 starts and ends.
 
-- import `logging` to your run.py
-- setup your logging parameters to output to a file and to change the `log_level` to information[^1]
+###  import `logging` to your run.py
+### setup your logging parameters to output to a file and to change the `log_level` to information[^1]
 
 ```python
 import logging
@@ -56,7 +56,7 @@ logging.basicConfig(
 
 ```
 
-- Add your log statement before `site.render()`
+### Add your log statement before `site.render()`
 
 ```python
 if __name__ == "__main__":
