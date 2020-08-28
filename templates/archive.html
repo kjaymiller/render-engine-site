@@ -3,6 +3,8 @@
 <div class="hero">
   <div class="hero-body">
     <h1 class="title is-1">Blog Posts<h1>
+        <p>Here is a collection of blog posts that will help you build your
+        next Render Engine project</p>
   </div>
 </div>
 
@@ -13,6 +15,7 @@
           <h2 class="title is-3">
             <a href="/blog/{{page.slug}}">{{page.title}}</a>
           </h2>
+          <h3 class="small">{{page.friendly_date}}</h3>
           <div>{{page.content}}</div>
         </div>
         {% endfor %}

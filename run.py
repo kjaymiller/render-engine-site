@@ -1,12 +1,11 @@
 from render_engine import Site, Page, Collection, Blog
 import logging
 
-class site(Site):
-    strict = True
-    SITE_TITLE = "Render_Engine"
-    SITE_URL = "https://render-engine.site"
 
-site = site()
+site = Site()
+site.strict = True
+site.SITE_TITLE = "Render_Engine"
+site.SITE_URL = "https://render-engine.site"
 
 @site.register_route
 class Index(Page):
