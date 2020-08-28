@@ -19,5 +19,6 @@ class blog(Blog):
     routes = ['blog']
     markdown_extras = ['footnotes']
     subcollections = ['category']
+    template = 'blog.html'
 
 site.render() # build out the tools
