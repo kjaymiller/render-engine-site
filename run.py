@@ -1,7 +1,8 @@
-from render_engine import Site, Page, Collection
+from render_engine import Site, Page, Collection, Blog
 
 site = Site()
 site.strict = True
+site.Title = j
 
 @site.register_route
 class Index(Page):
@@ -9,9 +10,12 @@ class Index(Page):
     slug = "index"
 
 @site.register_collection
-class Docs(Collection):
-    content_path = 'content/docs'
-    routes = ['docs']
-    markdown_extras = ['header-ids', 'fenced-code-blocks']
+class blog(Blog):
+    site.render() # build out the tools
+    template_path: 'content'
+    routes = ['blog']
+    markdown_extras = ['footnotes']
 
-site.render() # build out the tools
+
+if __name__ == "__main__":
+    site.render()
