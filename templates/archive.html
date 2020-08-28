@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="hero">
   <h1 class="title is-1">Blog Posts<h1>
+</div>
+
+<section class="section">
+  <div class="container">
       <ul>
         {% for page in pages %}
         <li><a href="/{{page.slug}}">{{page.title}}</a></li>
         {% endfor %}
       </ul>
+  </div>
+</section>
 {% endblock %}
