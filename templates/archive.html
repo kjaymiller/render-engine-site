@@ -8,11 +8,14 @@
 
 <section class="section">
   <div class="box">
-      <ul>
         {% for page in pages %}
-        <li><a href="/{{page.slug}}">{{page.title}}</a></li>
+        <div>
+          <h2 class="title is-5">
+            <a href="/blog/{{page.slug}}">{{page.title}}</a>
+          </h2>
+          <div>{{page.html}}</div>
+        </div>
         {% endfor %}
-      </ul>
   </div>
 </section>
 {% endblock %}
