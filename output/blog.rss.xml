@@ -92,5 +92,175 @@ shell scripts and more.</p>
 ]]></description>
 
 <link>https://render-engine.siteblog/executing-pre-and-post-processed-code</link>
-<pubDate>Fri, 28 Aug 2020 13:53:00 -0700</pubDate><guid isPermaLink="false">executing-pre-and-post-processed-code</guid></item></channel>
+<pubDate>Fri, 28 Aug 2020 13:53:00 -0700</pubDate><guid isPermaLink="false">executing-pre-and-post-processed-code</guid></item><item>
+<title>Using Tailwind CSS with Render-Engine</title>  <description><![CDATA[<p>Tailwind CSS is a CSS Framework that is growing in massive popularity. It
+features an <em>easy-to-use</em>, <em>start-from-zero</em>, approach to adding style to your
+website.</p>
+
+<p>Tailwind has been easily integrated into many javascript frameworks, including
+the static ones. It's just as easy to apply tailwind into your Render Engine
+framework as well.</p>
+
+<h2>Getting Setup with Tailwind CSS</h2>
+
+<p>This isn't a definitive guide on how to use Tailwind CSS, rather a simple step-by-step on what is needed to add the styles to your Render Engine project.
+Consult the Tailwind CSS documentation for a more in-depth look at the styling process.</p>
+
+<p>You can download tailwind via npm or you can download it from source.</p>
+
+<p><code>npm install tailwindcss</code></p>
+
+<p>I would recommend via npm as you can easily implement some of the pruning
+features of the build process.</p>
+
+<p>Tailwind uses a config file to update the system config.js.</p>
+
+<p>Here is a copy of the <code>tailwind.config.js</code> file that I have used.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">purge</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">enabled</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span>
+    <span class="nx">content</span><span class="o">:</span> <span class="p">[</span>
+      <span class="s1">&#39;./output/**/*.html&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;./output/**/*.js&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+  <span class="p">},</span>
+  <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">extend</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="p">},</span>
+  <span class="nx">variants</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+    <span class="c1">// ...</span>
+    <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;tailwindcss&#39;</span><span class="p">),</span>
+    <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;autoprefixer&#39;</span><span class="p">),</span>
+    <span class="c1">// ...</span>
+  <span class="p">],</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Let's break this down bit by bit.</p>
+
+<div class="codehilite"><pre><span></span><code>  <span class="nx">purge</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">enabled</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span>
+    <span class="nx">content</span><span class="o">:</span> <span class="p">[</span>
+      <span class="s1">&#39;./output/**/*.html&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;./output/**/*.js&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+  <span class="p">},</span>
+</code></pre></div>
+
+<p>This makes it so that only code that is needed for your site is added to your
+final css. This can transform a 22+ MB file and make only a few KB.</p>
+
+<p>The one drawback to this is that you will only have access to the styles that
+you have added. This can add a little confusion when editing the design. I
+would suggest setting <code>enabled: false</code> until you are ready to publish to the
+web.</p>
+
+<p>The <code>content</code> portion of purge tells Tailwind CSS where to look for calls to the
+css.</p>
+
+<p><code>./output/**/*.html</code> ensures that all html files are checked in <code>output</code>.</p>
+
+<div class="codehilite"><pre><span></span><code>  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+    <span class="c1">// ...</span>
+    <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;tailwindcss&#39;</span><span class="p">),</span>
+    <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;autoprefixer&#39;</span><span class="p">),</span>
+    <span class="c1">// ...</span>
+  <span class="p">],</span>
+</code></pre></div>
+
+<p>This loads <code>tailwindcss</code> and the <code>autoprefixer</code> that we use for the buildout.</p>
+
+<h2>Build your base stylesheet</h2>
+
+<p>This <strong>WON'T</strong> be the final version that is added to the site so be sure to
+name it something that is easy to recall.</p>
+
+<pre><code>$ touch static/pre-styles.css
+</code></pre>
+
+<p>In that file, add your tailwind components. Apply any modifications to the base
+style here.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="p">@</span><span class="k">tailwind</span> <span class="nt">base</span><span class="p">;</span>
+<span class="o">//</span> <span class="nt">add</span> <span class="nt">modifications</span>
+<span class="nt">h1</span> <span class="p">{</span>
+  <span class="err">@apply</span> <span class="err">text-4xl</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">@</span><span class="k">tailwind</span> <span class="nt">components</span><span class="p">;</span>
+<span class="o">//</span> <span class="nt">add</span> <span class="nt">modifications</span>
+
+<span class="p">@</span><span class="k">tailwind</span> <span class="nt">utilities</span><span class="p">;</span>
+</code></pre></div>
+
+<h2>Add some Tailwind CSS to your Templates</h2>
+
+<p>Just a quick reminder that if you have <code>purge: true</code> set, CSS will not be
+generated if there are no html classes that call it. If you haven't yet, start
+adding some Tailwind CSS classes to your templates.</p>
+
+<h2>Generate the CSS File for Your Project</h2>
+
+<p>Once you have some Tailwind CSS added to your templates, you will not see the
+styles work until you add the rendered stylesheet.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="c">&lt;!-- In each file that needs it --&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/static/tailwind.css&quot;</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>You may be asking "Woah! Where did this file come from?"</p>
+
+<p>The file doesn't exist yet, but we need to build the output directory prior to
+adding it.</p>
+
+<p>Let's run render engine.</p>
+
+<p><code>$ python run.py</code></p>
+
+<p>This will build the website as expected.</p>
+
+<p>Lastly, generate the <code>tailwind.css</code> stylesheet with the <code>build</code> command.</p>
+
+<p><code>npx tailwindcss build pre-styles.css -o output/static/tailwind.css</code></p>
+
+<p>This will create the missing file and add it into your output folder.</p>
+
+<h2>Autogenerate your CSS</h2>
+
+<p>You can add the build command into your run.py.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="c1"># from run.py</span>
+<span class="kn">from</span> <span class="nn">render</span><span class="o">-</span><span class="n">engine</span> <span class="kn">import</span> <span class="nn">Site</span><span class="o">,</span> <span class="nn">Page</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="n">site</span> <span class="o">=</span> <span class="n">Site</span><span class="p">()</span>
+
+<span class="nd">@site</span><span class="o">.</span><span class="n">register_route</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">Index</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="o">...</span> <span class="c1"># your site code</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">site</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">command</span><span class="p">([</span><span class="s1">&#39;npx&#39;</span><span class="p">,</span> <span class="s1">&#39;tailwindcss&#39;</span><span class="p">,</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span> <span class="s1">&#39;pre-styles.css&#39;</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="s1">&#39;output/static/tailwind.css&#39;</span><span class="p">])</span>
+</code></pre></div>
+
+<h2>Can You Look at the Templates?</h2>
+
+<p>I haven't tested this but I could see that working. This would make it so that
+you can build your tailwind css files into static and then have it copy over
+when you render your site. Of course this could add some features based on
+optionals and if you want to include styling in your <code>Page.content</code> it would
+not be included. Furthermore, you would still need to run the npx build to get
+any updated styles.</p>
+]]></description>
+
+<link>https://render-engine.siteblog/tailwind-x-render-engine</link>
+<pubDate>Fri, 28 Aug 2020 15:00:00 -0700</pubDate><guid isPermaLink="false">tailwind-x-render-engine</guid></item></channel>
 </rss>

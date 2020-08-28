@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
     
-    <title>Blog - Render Engine</title>
+    <title>Using tailwind css with render-engine - Render Engine</title>
     
   <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
   <link type="text/css" rel="stylesheet" href="/static/pygments.css">
@@ -24,23 +24,17 @@ body {font-size: 1.2em;}
   </div>
 </nav>
   
-<div class="hero">
-  <div class="hero-body">
-    <h1 class="title is-1">Blog Posts<h1>
-        <p>Here is a collection of blog posts that will help you build your
-        next Render Engine project</p>
-  </div>
-</div>
-
 <section class="section">
-  <div class="box">
-        
-        <div class="content">
-          <h2 class="title is-3">
-            <a href="/blog/tailwind-x-render-engine">Using Tailwind CSS with Render-Engine</a>
-          </h2>
-          <h3 class="small">Aug 28, 2020 15:00 PM by </h3>
-          <div><p>Tailwind CSS is a CSS Framework that is growing in massive popularity. It
+  <div class="container">
+    <div class="hero">
+      <div class="hero-body">
+        <h1 class='title is-2'>Using Tailwind CSS with Render-Engine</h1>
+        <h3 class="">Aug 28, 2020 15:00 PM by </h3>
+      </div>
+    <div>
+
+    <div class="content">
+      <p>Tailwind CSS is a CSS Framework that is growing in massive popularity. It
 features an <em>easy-to-use</em>, <em>start-from-zero</em>, approach to adding style to your
 website.</p>
 
@@ -206,99 +200,15 @@ when you render your site. Of course this could add some features based on
 optionals and if you want to include styling in your <code>Page.content</code> it would
 not be included. Furthermore, you would still need to run the npx build to get
 any updated styles.</p>
-</div>
-        </div>
-        
-        <div class="content">
-          <h2 class="title is-3">
-            <a href="/blog/executing-pre-and-post-processed-code">Executing PRE and POST Processed Code</a>
-          </h2>
-          <h3 class="small">Aug 28, 2020 13:53 PM by Jay Miller</h3>
-          <div><p>Render Engine doesn't have any pre or post processing hooks to speak of because
-of it's simple design.</p>
 
-<p>It is still easy to execute code before or after you have run <code>render()</code> for
-your site.</p>
+    </div>
 
-<p>Here is a look at how this site is generated.</p>
-
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">render_engine</span> <span class="kn">import</span> <span class="n">Site</span><span class="p">,</span> <span class="n">Page</span><span class="p">,</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">Blog</span>
-
-<span class="n">site</span> <span class="o">=</span> <span class="n">Site</span><span class="p">()</span>
-<span class="n">site</span><span class="o">.</span><span class="n">strict</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">site</span><span class="o">.</span><span class="n">SITE_TITLE</span> <span class="o">=</span> <span class="s2">&quot;Render_Engine&quot;</span>
-<span class="n">site</span><span class="o">.</span><span class="n">SITE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://render-engine.site&quot;</span>
-
-<span class="nd">@site</span><span class="o">.</span><span class="n">register_route</span>
-<span class="k">class</span> <span class="nc">Index</span><span class="p">(</span><span class="n">Page</span><span class="p">):</span>
-    <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;index.html&quot;</span> <span class="c1"># page.html is the default template but you can make a custom template</span>
-    <span class="n">slug</span> <span class="o">=</span> <span class="s2">&quot;index&quot;</span>
-
-<span class="nd">@site</span><span class="o">.</span><span class="n">register_collection</span>
-<span class="k">class</span> <span class="nc">blog</span><span class="p">(</span><span class="n">Blog</span><span class="p">):</span>
-    <span class="n">site</span><span class="o">.</span><span class="n">render</span><span class="p">()</span> <span class="c1"># build out the tools</span>
-    <span class="n">template_path</span><span class="p">:</span> <span class="s1">&#39;./content&#39;</span>
-    <span class="n">routes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blog&#39;</span><span class="p">]</span>
-    <span class="n">markdown_extras</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;footnotes&#39;</span><span class="p">]</span>
-    <span class="n">subcollections</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-
-  <span class="n">site</span><span class="o">.</span><span class="n">render</span><span class="p">()</span> <span class="c1"># build out the tools</span>
-</code></pre></div>
-
-<p>Let's add a custom message to our logging when render-engine
-starts and ends.</p>
-
-<h3>import <code>logging</code> to your run.py</h3>
-
-<h3>setup your logging parameters to output to a file and to change the <code>log_level</code> to information<sup class="footnote-ref" id="fnref-1"><a href="#fn-1">1</a></sup></h3>
-
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
-
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-                    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;render-engine.log&quot;</span><span class="p">,</span>
-                    <span class="n">filemode</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span>
-                    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1">,</span><span class="si">%(msecs)d</span><span class="s1"> </span><span class="si">%(name)s</span><span class="s1"> </span><span class="si">%(levelname)s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
-                    <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">,</span>
-                    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
-</code></pre></div>
-
-<h3>Add your log statement before <code>site.render()</code></h3>
-
-<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-  <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;started_site_build&#39;</span><span class="p">)</span> <span class="c1"># This runs before</span>
-  <span class="n">site</span><span class="o">.</span><span class="n">render</span><span class="p">()</span> <span class="c1"># build out the tools</span>
-  <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;finished_site_build&#39;</span><span class="p">)</span> <span class="c1"># This runs when finished</span>
-</code></pre></div>
-
-<p>After you run <code>site.render()</code>, you should see a new <code>render-engine.log</code> your
-directory with some basic information about your site. 
-sl</p>
-
-<pre><code>13:23:53,651 root INFO started_site_build
-13:23:53,655 root INFO subcollection_group='category'
-13:23:53,659 root INFO filepath=PosixPath('output/index.html') written!
-13:23:53,661 root INFO filepath=PosixPath('output/blog/blog.html') written!
-13:23:53,669 root INFO filepath=PosixPath('output/blog.rss.xml') written!
-u 13:23:53,669 root INFO finished_site_build
-</code></pre>
-
-<p>You can use this to execute commands like setting global variables, running
-shell scripts and more.</p>
-
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn-1">
-<p>setting log_level to information can also add logging information to the site that you did not expect due to render-engines dependencies.&#160;<a href="#fnref-1" class="footnoteBackLink" title="Jump back to footnote 1 in the text.">&#8617;</a></p>
-</li>
-</ol>
-</div>
-</div>
-        </div>
-        
+    <div class="hero is-grey-light">
+      <div class="hero-body">
+        <p>The Blog is <em>Community Driven</em> if you have a blog post that you
+    would like to add. You can submit it in via pull request to this Repo.</p>
+      </div>
+    </div>
   </div>
 </section>
 
