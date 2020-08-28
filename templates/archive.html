@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1 class="subtitle is-4">Blog Posts<h1>
+  <h1 class="title is-1">Blog Posts<h1>
       <ul>
         {% for page in pages %}
         <li><a href="/{{page.slug}}">{{page.title}}</a></li>
